@@ -1,0 +1,9 @@
+authors = ["Lars Hellemo <hellemo@gmail.com>"]
+name = "Access"
+uuid = "14e0eef2-daed-11e8-2af2-4b4a56e59020"
+version = "0.1.0"
+
+[deps]
+JDBC
+DataFrames
+JavaCall
