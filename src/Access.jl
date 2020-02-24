@@ -5,16 +5,16 @@ using JDBC, DataFrames
 
 function __init__()
 
-    libs = ["commons-lang-2.6.jar","commons-logging-1.1.3.jar","hsqldb.jar","jackcess-2.1.11.jar"]
+    libs = ["commons-lang3-3.8.1.jar","commons-logging-1.2.jar","hsqldb-2.5.0.jar","jackcess-3.0.1.jar"]
     for l in libs
         fn = joinpath(@__DIR__,"..","UCanAccess","lib",l)
         JavaCall.addClassPath(fn)
     end
     
-    fn = joinpath(@__DIR__,"..","UCanAccess","ucanaccess-4.0.4.jar")
+    fn = joinpath(@__DIR__,"..","UCanAccess","ucanaccess-5.0.0.jar")
     fn = replace(fn,"\\" => "/")
     
-    JDBC.usedriver(joinpath(@__DIR__,"..","UCanAccess","ucanaccess-4.0.4.jar"))
+    JDBC.usedriver(joinpath(@__DIR__,"..","UCanAccess","ucanaccess-5.0.0.jar"))
     JDBC.init()
     
     return nothing
