@@ -1,9 +1,9 @@
-authors = ["Lars Hellemo <hellemo@gmail.com>"]
 name = "Access"
 uuid = "14e0eef2-daed-11e8-2af2-4b4a56e59020"
+authors = ["Lars Hellemo <hellemo@gmail.com>"]
 version = "0.1.0"
 
 [deps]
-JDBC
-DataFrames
-JavaCall
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+JDBC = "6042db11-3c3d-5e84-8dba-9cbf74c9ba48"
+JavaCall = "494afd89-becb-516b-aafa-70d2670c0337"
