@@ -1,24 +1,28 @@
 module Access
 
+using DataFrames
 using JavaCall
-using JDBC, DataFrames
+using JDBC
+using Pkg.Artifacts
 
 function __init__()
+    basepath = joinpath(artifact"ucanaccess", "UCanAccess-5.0.0-bin")
+
     libs = [
         "commons-lang3-3.8.1.jar",
         "commons-logging-1.2.jar",
         "hsqldb-2.5.0.jar",
         "jackcess-3.0.1.jar",
     ]
+
     for l in libs
-        fn = joinpath(@__DIR__, "..", "UCanAccess", "lib", l)
+        fn = joinpath(basepath, "lib", l)
         JavaCall.addClassPath(fn)
     end
 
-    fn = joinpath(@__DIR__, "..", "UCanAccess", "ucanaccess-5.0.0.jar")
-    fn = replace(fn, "\\" => "/")
+    fn = joinpath(basepath, "ucanaccess-5.0.0.jar")
 
-    JDBC.usedriver(joinpath(@__DIR__, "..", "UCanAccess", "ucanaccess-5.0.0.jar"))
+    JDBC.usedriver(joinpath(basepath, "ucanaccess-5.0.0.jar"))
     JDBC.init()
 
     return nothing
