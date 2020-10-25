@@ -30,5 +30,5 @@ if ucanaccess_hash === nothing || !artifact_exists(ucanaccess_hash)
         tmp_file = download("https://sourceforge.net/projects/ucanaccess/files/UCanAccess-5.0.0-bin.zip/download")
         unzip(tmp_file, artifact_dir) # Unpack to artifact_dir
     end
-    bind_artifact!(artifact_toml, "ucanaccess", ucanaccess_hash;force=true)
+    bind_artifact!(artifact_toml, "ucanaccess", ucanaccess_hash; force=true)
 end

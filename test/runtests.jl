@@ -1,14 +1,13 @@
-using Test
 using Access
+using Test
 
 fn = cp(
     joinpath(@__DIR__, "TestDatabase.accdb"),
     joinpath(mktempdir(; cleanup=false), "Test.accdb"),
 )
+chmod(fn, 0o777) # Make sure file is writable for tests
 
 @testset "Read data from db" begin
-
-    # fn = joinpath(@__DIR__,"TestDatabase.accdb")
     @test isfile(fn)
     df = Access.query(fn, "SELECT * FROM Person WHERE BirthYear > 1980")
 
