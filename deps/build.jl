@@ -1,4 +1,3 @@
-using Access
 using Pkg.Artifacts
 using ZipFile
 
@@ -22,7 +21,7 @@ function unzip(file, exdir="")
     return close(zarchive)
 end
 
-artifact_toml = joinpath(pkgdir(Access), "Artifacts.toml")
+artifact_toml = joinpath(@__DIR__, "..", "Artifacts.toml")
 ucanaccess_hash = artifact_hash("ucanaccess", artifact_toml)
 
 # Download and unzip to Artifact if not already existing
