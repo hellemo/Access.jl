@@ -1,12 +1,15 @@
 module Access
 
 using DataFrames
+using Downloads
 using JavaCall
 using JDBC
 using Pkg.Artifacts
+using ZipFile
+
 
 function __init__()
-    basepath = joinpath(artifact"ucanaccess", "UCanAccess-5.0.0-bin")
+    basepath = joinpath(artifact"ucanaccess", "UCanAccess-5.0.1.bin")
 
     libs = [
         "commons-lang3-3.8.1.jar",
@@ -20,9 +23,9 @@ function __init__()
         JavaCall.addClassPath(fn)
     end
 
-    fn = joinpath(basepath, "ucanaccess-5.0.0.jar")
+    fn = joinpath(basepath, "ucanaccess-5.0.1.jar")
 
-    JDBC.usedriver(joinpath(basepath, "ucanaccess-5.0.0.jar"))
+    JDBC.usedriver(joinpath(basepath, "ucanaccess-5.0.1.jar"))
     JDBC.init()
 
     return nothing
