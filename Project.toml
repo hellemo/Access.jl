@@ -1,7 +1,7 @@
 name = "Access"
 uuid = "14e0eef2-daed-11e8-2af2-4b4a56e59020"
 authors = ["Lars Hellemo <hellemo@gmail.com>"]
-version = "0.2.3"
+version = "0.2.4"
 
 [deps]
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
@@ -12,4 +12,8 @@ Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 ZipFile = "a5390f91-8eb1-5f08-bee0-b1d1ffed6cea"
 
 [compat]
+DataFrames = "1"
 JavaCall = "0.7.4"
+JDBC = "0.5"
+ZipFile = "0.9"
+julia = "1"
