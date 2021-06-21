@@ -21,7 +21,8 @@ function unzip(file, exdir="")
     return close(zarchive)
 end
 
-artifact_toml = joinpath(@__DIR__, "..", "Artifacts.toml")
+artifact_toml = realpath(joinpath(@__DIR__, "..", "Artifacts.toml"))
+chmod(artifact_toml, 0o644)
 ucanaccess_hash = artifact_hash("ucanaccess", artifact_toml)
 
 # Download and unzip to Artifact if not already existing
