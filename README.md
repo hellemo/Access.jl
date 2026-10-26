@@ -2,7 +2,9 @@
 
 [![Code Style: Blue](https://img.shields.io/badge/code%20style-blue-4495d1.svg)](https://github.com/invenia/BlueStyle)
 
-Query MS Access files via [JDBC](https://github.com/JuliaDatabases/JDBC.jl) and [UCanAccess](http://ucanaccess.sourceforge.net).
+Query MS Access files via [JDBC](https://github.com/JuliaDatabases/JDBC.jl) and [UCanAccess](https://github.com/spannm/ucanaccess) (version 5.2.0).
+
+Requires Java 11 or newer (set `JAVA_HOME` if Java is not found automatically).
 
 ## Example
 
