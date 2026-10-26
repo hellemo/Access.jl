@@ -7,25 +7,13 @@ using JDBC
 using Pkg.Artifacts
 using ZipFile
 
+const UCANACCESS_VERSION = "5.2.0"
 
 function __init__()
-    basepath = joinpath(artifact"ucanaccess", "UCanAccess-5.0.1.bin")
+    # The uber jar bundles UCanAccess with its dependencies (HSQLDB, Jackcess)
+    jar = joinpath(artifact"ucanaccess", "ucanaccess-$(UCANACCESS_VERSION)-uber.jar")
 
-    libs = [
-        "commons-lang3-3.8.1.jar",
-        "commons-logging-1.2.jar",
-        "hsqldb-2.5.0.jar",
-        "jackcess-3.0.1.jar",
-    ]
-
-    for l in libs
-        fn = joinpath(basepath, "lib", l)
-        JavaCall.addClassPath(fn)
-    end
-
-    fn = joinpath(basepath, "ucanaccess-5.0.1.jar")
-
-    JDBC.usedriver(joinpath(basepath, "ucanaccess-5.0.1.jar"))
+    JDBC.usedriver(jar)
     JDBC.init()
 
     return nothing
@@ -38,7 +26,9 @@ function filecursor(fn; immediaterelease=false, noinactivitytimeout=false)
         timeout = ";inactivityTimeout=0"
     end
 
-    return cursor("jdbc:ucanaccess://$fn;immediatelyReleaseResources=$(string(immediaterelease))$(timeout)")
+    return cursor(
+        "jdbc:ucanaccess://$fn;immediatelyReleaseResources=$(string(immediaterelease))$(timeout)",
+    )
 end
 
 function query(fn, qstr; imrelease=false, notimeout=true)
@@ -88,7 +78,7 @@ function insertdf(fn, df::DataFrame, tablename::String; imrelease=false, notimeo
     end
 end
 
-# Insert all rows from a DataFram into table with same name as DataFrame
+# Insert all rows from a DataFrames into table with same name as DataFrame
 macro insertdf(fn, df)
     return quote
         tn = $(string(df))

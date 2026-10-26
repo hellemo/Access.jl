@@ -21,14 +21,21 @@ function unzip(file, exdir="")
     return close(zarchive)
 end
 
+const UCANACCESS_VERSION = "5.2.0"
+const UCANACCESS_JAR = "ucanaccess-$(UCANACCESS_VERSION)-uber.jar"
+
 artifact_toml = realpath(joinpath(@__DIR__, "..", "Artifacts.toml"))
 chmod(artifact_toml, 0o644)
 ucanaccess_hash = artifact_hash("ucanaccess", artifact_toml)
 
-# Download and unzip to Artifact if not already existing
-if ucanaccess_hash === nothing || !artifact_exists(ucanaccess_hash)
+# Download and unzip to Artifact if not already existing (or bound to another version)
+if ucanaccess_hash === nothing ||
+    !artifact_exists(ucanaccess_hash) ||
+    !isfile(joinpath(artifact_path(ucanaccess_hash), UCANACCESS_JAR))
     ucanaccess_hash = create_artifact() do artifact_dir
-        tmp_file = Downloads.download("https://sourceforge.net/projects/ucanaccess/files/UCanAccess-5.0.1.bin.zip/download")
+        tmp_file = Downloads.download(
+            "https://repo1.maven.org/maven2/io/github/spannm/ucanaccess/$(UCANACCESS_VERSION)/ucanaccess-$(UCANACCESS_VERSION)-distrib.zip",
+        )
         unzip(tmp_file, artifact_dir) # Unpack to artifact_dir
     end
     bind_artifact!(artifact_toml, "ucanaccess", ucanaccess_hash; force=true)
