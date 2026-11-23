@@ -21,7 +21,7 @@ function unzip(file, exdir="")
     return close(zarchive)
 end
 
-const UCANACCESS_VERSION = "5.2.0"
+const UCANACCESS_VERSION = "5.3.0"
 const UCANACCESS_JAR = "ucanaccess-$(UCANACCESS_VERSION)-uber.jar"
 
 artifact_toml = realpath(joinpath(@__DIR__, "..", "Artifacts.toml"))
