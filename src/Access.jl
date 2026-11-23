@@ -7,7 +7,7 @@ using JDBC
 using Pkg.Artifacts
 using ZipFile
 
-const UCANACCESS_VERSION = "5.2.0"
+const UCANACCESS_VERSION = "5.3.0"
 
 function __init__()
     # The uber jar bundles UCanAccess with its dependencies (HSQLDB, Jackcess)

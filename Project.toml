@@ -1,7 +1,7 @@
 name = "Access"
 uuid = "14e0eef2-daed-11e8-2af2-4b4a56e59020"
 authors = ["Lars Hellemo <hellemo@gmail.com>"]
-version = "0.3.0"
+version = "0.3.1"
 
 [deps]
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
